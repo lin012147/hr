@@ -126,5 +126,46 @@
 		select emp_pic from emp 
 		where emp_login_name=#{empLoginName,jdbcType=VARCHAR}
 	</select>	
-
+	
+	<select id="queryByCondition" resultMap="BaseResultMap">
+		SELECT
+		e.emp_id,
+		e.emp_name,
+		e.emp_email,
+		e.emp_phone,
+		d.dept_name,
+		j.job_name
+		FROM emp e
+		LEFT OUTER JOIN dept d ON e.emp_dept_id = d.dept_id
+		LEFT
+		OUTER JOIN job j ON e.emp_job_id = j.job_id
+		<where>
+			<if test="deptId != null">
+				and d.dept_id=#{deptId}
+			</if>
+			<if test="jobId != null">
+				and j.job_id=#{jobId}
+			</if>
+			<if test="empName != null and empName != ''">
+				and instr(e.emp_name,#{empName})>0
+			</if>
+		</where>		
+		ORDER BY e.emp_id
+		LIMIT #{pager.start},#{pager.pageSize}		
+	</select>
+	
+	<select id="getCountByCondition" resultType="java.lang.Integer">
+		select count(*) from emp e
+		<where>
+			<if test="deptId != null">
+				and e.emp_dept_id=#{deptId}
+			</if>
+			<if test="jobId != null">
+				and e.emp_job_id=#{jobId}
+			</if>
+			<if test="empName != null and empName != ''">
+				and instr(e.emp_name,#{empName})>0
+			</if>
+		</where>
+	</select>
 </mapper>

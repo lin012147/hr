@@ -48,5 +48,14 @@ public interface EmpMapper {
 	 * 通过登录名查询头像数据 如果用户不存在，返回null
 	 */
 	String queryEmpPic(String empLoginName);
+	/**
+	 * 通过部门，职务，姓名检索员工
+	 */
+	List<Emp> queryByCondition(@Param("deptId")Integer deptId,@Param("jobId")Integer jobId,@Param("empName")String empName,@Param("pager")Pager pager);
 	
+	/**
+	 * 满足查询条件的总记录数
+	 */
+	int getCountByCondition(@Param("deptId")Integer deptId,@Param("jobId")Integer jobId,@Param("empName")String empName);
 }
+

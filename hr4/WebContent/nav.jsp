@@ -132,7 +132,7 @@
 						<span class="glyphicon glyphicon-wrench"></span>
 						修改密码
 					</a>
-					<a href="#" class="list-group-item" target="content">
+					<a href="SearchEmp.html" class="list-group-item" target="content">
 						<span class="glyphicon glyphicon-search"></span>
 						数据检索
 					</a>

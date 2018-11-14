@@ -1,7 +1,5 @@
 package com.icss.hr.common;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
-
 /**
  * 分页工具类 
  */
@@ -21,14 +19,14 @@ public class Pager {
 	
 	public Pager(int recordCount,int pageSize,int pageNum) {
 		
-		
 		//设置属性值
 		this.recordCount = recordCount;
 		this.pageSize = pageSize;
 		this.pageNum = pageNum;
 		
-		
-		
+		//计算pageSize
+		if (this.pageSize <= 0)
+			this.pageSize = 10;
 		
 		//计算共几页
 		this.pageCount = this.recordCount / this.pageSize;
@@ -42,8 +40,11 @@ public class Pager {
 		if (this.pageNum > this.pageCount)
 			this.pageNum = this.pageCount;
 		
+		if (this.pageNum <= 0)
+			this.pageNum = 1;
+		
 		//计算起始位置和终止位置
-		this.start = (this.pageNum - 1) * this.pageSize + 1;
+		this.start = (this.pageNum - 1) * this.pageSize;
 		this.end = this.pageSize * this.pageNum;
 		
 		if (this.end > this.recordCount)

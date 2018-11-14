@@ -1,7 +1,5 @@
 package com.icss.test;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-
 import java.sql.Date;
 import java.util.List;
 
@@ -128,6 +126,26 @@ public class TestEmpService {
 		System.out.println(empPic);
 		
 	}
-	
-	
+	@Test
+	public void testGetCountByConDition(){
+		Integer deptId = 1;
+		Integer jobId = 3;
+		String empName = null;
+		
+		int count = service.getEmpCountByCondition(deptId, jobId, empName);
+		System.out.println("count = " + count);
+	}
+	@Test
+	public void testQueryByCondition(){
+		Integer deptId = 1;
+		Integer jobId = 3;
+		String empName = null;
+		
+		Pager pager = new Pager(service.getEmpCountByCondition(deptId, jobId, empName), 1);
+		
+		List<Emp> list = service.queryEmpByCondition(deptId, jobId, empName, pager);
+		for(Emp emp : list){
+			System.out.println(emp);
+		}
+	}
 }
