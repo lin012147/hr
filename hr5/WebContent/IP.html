@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="js/bootstrap/css/bootstrap.css" />
+	</head>
+	<body>
+		
+		<div class="container">
+		
+		<ol class="breadcrumb">
+			<li><a href="#">人力资源管理系统</a></li>
+			<li><a href="#">实用工具</a></li>
+			<li>IP查询</li>
+		</ol>
+		
+		<input type="text" id="IP" placeholder="请输入IP地址" class="form-control">
+		
+		<input type="button" value="查看IP" id="showBtn" class="btn btn-primary">
+		
+		<div id="result">
+			地区：<span id="area"></span>
+			<br>
+			位置：<span id="location"></span>
+			
+		</div>		
+		
+	</div>
+
+	<script type="text/javascript" src="js/jquery.js" ></script>
+	<script type="text/javascript" src="js/global.js" ></script>
+	<script type="text/javascript" src="js/bootstrap/js/bootstrap.js" ></script>
+	<script type="text/javascript" src="js/layer/layer.js" ></script>
+		
+	<script type="text/javascript">
+		
+		$(function() {
+			
+			$('#showBtn').click(function() {
+				
+				$.getJSON(baseUrl + '/IPServlet',{IP:$('#IP').val()},function(data) {
+					
+					$('#area').text(data.result.area);
+					$('#location').text(data.result.location);
+					
+				});
+				
+			});
+			
+		});
+		
+	</script>
+		
+	</body>
+</html>

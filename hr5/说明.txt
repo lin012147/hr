@@ -1,0 +1,4 @@
+人力资源管理系统基本版，前端  h5 css3 js jquery vue bootstrap，layer插件，日历插件，echarts图表，瀑布流，头像裁剪
+后端使用SSM三大框架  C3P0连接池
+第三方阿凡达数据平台
+MYSQL数据库  增加员工检索功能和Lucene全文检索功能
