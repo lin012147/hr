@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="js/bootstrap/css/bootstrap.css" />
+</head>
+<body>
+	
+	<div class="container">
+		
+		<ol class="breadcrumb">
+			<li><a href="#">人力资源管理系统</a></li>
+			<li><a href="#">实用工具</a></li>
+			<li>手机号码归属地查询</li>
+		</ol>
+		
+		<input type="text" id="mobileNumber" placeholder="请输入手机号码" class="form-control">
+		
+		<input type="button" value="查看归属地" id="showBtn" class="btn btn-primary">
+		
+		<div id="result">
+			手机号码：<span id="mobile"></span>
+			<br>
+			归属地：<span id="mobilearea"></span>
+			<br>
+			种类:<span id="mobiletype"></span>
+			<br>
+			地区码：<span id="areacode"></span>
+			<br>
+			post码：<span id="postcode"></span>
+			
+		</div>		
+		
+	</div>
+
+	<script type="text/javascript" src="js/jquery.js" ></script>
+	<script type="text/javascript" src="js/global.js" ></script>
+	<script type="text/javascript" src="js/bootstrap/js/bootstrap.js" ></script>
+	<script type="text/javascript" src="js/layer/layer.js" ></script>
+		
+	<script type="text/javascript">
+		
+		$(function() {
+			
+			$('#showBtn').click(function() {
+				
+				$.getJSON(baseUrl + '/MobileServlet',{mobileNumber:$('#mobileNumber').val()},function(data) {
+					
+					$('#mobile').text(data.result.mobilenumber);
+					$('#mobilearea').text(data.result.mobilearea);
+					$('#mobiletype').text(data.result.mobiletype);
+					$('#areacode').text(data.result.areacode);
+					$('#postcode').text(data.result.postcode);
+					
+				});
+				
+			});
+			
+		});
+		
+	</script>
+</body>
+</html>
